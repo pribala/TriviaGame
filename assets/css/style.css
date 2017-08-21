@@ -1,0 +1,13 @@
+.jumbotron {
+	background-color: #66aa78;
+}
+
+.container-fluid {
+	background-image: url("../images/old_map/old_map.png");
+}
+
+button {
+	margin-top: 15px;
+}	
+	
+
