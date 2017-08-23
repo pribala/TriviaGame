@@ -9,5 +9,16 @@
 button {
 	margin-top: 15px;
 }	
+
+h3 {
+	font-weight: bold;
+}
+
+p {
+	font-weight: bold;
+	font-size: 20px;
+	margin-left: 10px;
+}
+
 	
 
