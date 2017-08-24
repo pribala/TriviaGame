@@ -40,7 +40,7 @@ var model = {
 				 },
 				 {
 				 	question: "Which of the following is not one of Utah's 'Mighty 5' National Parks?",
-				 	choices: ["assets/images/arches.jpg", "assets/images/capitol-reef.jpg", "assets/images/bryce-canyon.jpg", "assets/images/badlands.jpg"], 
+				 	choices: ["assets/images/Arches.jpg", "assets/images/capitol-reef.jpg", "assets/images/bryce-canyon.jpg", "assets/images/badlands.jpg"], 
 				 	altText: ["Arches National Park", "Capitol Reef National Park", "Bryce Canyon National Park", "Badlands National Park"], 
 				 	answer: "Badlands National Park", 
 				 	position: 3,
