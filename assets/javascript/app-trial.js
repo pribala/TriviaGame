@@ -18,32 +18,32 @@ var model = {
 					answer: "Mammoth Cave National Park", 
 					position: 0,
 				},
-				{	question: "What state contains the most national parks?", 
-	 			  	choices: ["assets/images/Colorado.jpg", "assets/images/Utah.jpg", "assets/images/Alaska.jpg", "assets/images/California.jpg"], 
-					altText: ["Colorado", "Utah", "Alaska", "California"], 
-					answer: "California", 
-					position: 3,
-				},
-				{	question: "Through how many states does the Appalachian National Scenic Trail pass?", 
-	 			  	choices: ["assets/images/number-10.jpg", "assets/images/number-14.jpg", "assets/images/number-9.jpg", "assets/images/number-twelve.jpg"], 
-					altText: ["10", "14", "9", "12"], 
-					answer: "14", 
-					position: 1,
-				},
-				{
-					question: "What is the most visited national park?",
-					choices: ["assets/images/Yosemite-1.jpg", "assets/images/grand-canyon.jpg", "assets/images/Great-Smoky-Mountains.jpg", "assets/images/Rocky-Mountain.jpg"], 
-					altText: ["Yosemite National Park", "Grand Canyon National Park", "Smoky Mountains National Park", "Rocky Mountain National Park"], 
-					answer: "Smoky Mountains National Park", 
-					position: 2,
-				},
-				{
-					question: "Which of the following is not one of Utah's 'Mighty 5' National Parks?",
-					choices: ["assets/images/arches.jpg", "assets/images/capitol-reef.jpg", "assets/images/bryce-canyon.jpg", "assets/images/badlands.jpg"], 
-					altText: ["Arches National Park", "Capitol Reef National Park", "Bryce Canyon National Park", "Badlands National Park"], 
-					answer: "Badlands National Park", 
-					position: 3,
-				},
+				// {	question: "What state contains the most national parks?", 
+	 		// 	  	choices: ["assets/images/Colorado.jpg", "assets/images/Utah.jpg", "assets/images/Alaska.jpg", "assets/images/California.jpg"], 
+				// 	altText: ["Colorado", "Utah", "Alaska", "California"], 
+				// 	answer: "California", 
+				// 	position: 3,
+				// },
+				// {	question: "Through how many states does the Appalachian National Scenic Trail pass?", 
+	 		// 	  	choices: ["assets/images/number-10.jpg", "assets/images/number-14.jpg", "assets/images/number-9.jpg", "assets/images/number-twelve.jpg"], 
+				// 	altText: ["10", "14", "9", "12"], 
+				// 	answer: "14", 
+				// 	position: 1,
+				// },
+				// {
+				// 	question: "What is the most visited national park?",
+				// 	choices: ["assets/images/Yosemite-1.jpg", "assets/images/grand-canyon.jpg", "assets/images/Great-Smoky-Mountains.jpg", "assets/images/Rocky-Mountain.jpg"], 
+				// 	altText: ["Yosemite National Park", "Grand Canyon National Park", "Smoky Mountains National Park", "Rocky Mountain National Park"], 
+				// 	answer: "Smoky Mountains National Park", 
+				// 	position: 2,
+				// },
+				// {
+				// 	question: "Which of the following is not one of Utah's 'Mighty 5' National Parks?",
+				// 	choices: ["assets/images/arches.jpg", "assets/images/capitol-reef.jpg", "assets/images/bryce-canyon.jpg", "assets/images/badlands.jpg"], 
+				// 	altText: ["Arches National Park", "Capitol Reef National Park", "Bryce Canyon National Park", "Badlands National Park"], 
+				// 	answer: "Badlands National Park", 
+				// 	position: 3,
+				// },
 				// {	question: "This man is considered 'The Father of the National Parks.'",
 				// 	choices: ["assets/images/John-Muir.jpg", "assets/images/Teddy-Roosevelt.jpg", "assets/images/Joseph-LeConte.jpg", "assets/images/Ralph-Waldo-Emerson.jpg"], 
 				// 	altText: ["John Muir", "Teddy Roosevelt", "Joseph LeConte", "Ralph Waldo Emerson"], 
@@ -101,13 +101,13 @@ var model = {
  				},
  				
  				first: function() {
+ 					this.objIndex = 0;
  					return this.questions[0];
  				},
 
  				next: function() {
  					if(this.objIndex < model.questions.length -1){
  						this.objIndex++;
-	 					//return this.questions[this.objIndex];
 	 					setTimeout(gameView, 5000, this.questions[this.objIndex]);
  				 	}else {
  				 		setTimeout(showResult, 5000);
@@ -117,7 +117,7 @@ var model = {
 
 function showResult() {
 	$("#question").html("<h3>You have " + model.wins + " correct answers and "+ model.losses+" wrong answers.</h3>"); 
- 	$("#question").append("<button id='restart' class='btn btn-success'>Restart Game</button>");
+ 	$("#question").append("<button id='restart' class='btn-success'>Restart Game</button>");
 }
 
 function gameView(obj) {
@@ -151,18 +151,23 @@ $(document).ready(function() {
 	var obj = model.first();
 	gameView(obj);	
 
-		
-	 $("body").on("click", ".btn", function() {
+	$("body").on("click", "#restart",function(){
+		model.wins = 0;
+	 	model.losses = 0;
+	 	var obj = model.first();
+		gameView(obj);	
+	});
+
+	$("body").on("click", ".btn", function() {
 	 	model.stop();
 	 	model.reset();
+
 	  	if($(".trivia").data("answer") === $(this).text()){
 	 		$("#question").html('<h3>You got it! '+$(".trivia").data("answer")+' is correct.</h3></br><img src="'+$(".trivia").data("image")+'">');
-	 		//sucess = true;
 	 		model.wins++;
 	 		model.next();
 	 	}else {
 	 		$("#question").html('<h3>Sorry! The correct answer is ' + $(".trivia").data("answer")+'</h3>'+'</br><img src="'+$(".trivia").data("image")+'">');
-	 		//sucess = true;
 	 		model.losses++;
 	 		model.next();
 	 	}
