@@ -130,7 +130,7 @@ function gameView(obj) {
 	
 	for(var i=0; i<obj.choices.length;i++) {
 		var newCol = $("<div>");
-		newCol.addClass("col col-md-2 text-center");
+		newCol.addClass("col col-md-3 col-xs-6");
 
 		var newImg = $("<img>");
 		newImg.attr({"src": obj.choices[i], "alt": obj.altText[i]});
