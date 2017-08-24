@@ -4,7 +4,6 @@ var model = {
 					altText: ["Death Valley National Park", "Yosemite National Park", "Acadia National Park", "Yellowstone National Park"], 
 					answer: "Yellowstone National Park", 
 					position: 3,
-				//	time: 30 
 				},
 				{
 					question: "What national park is home to the world's largest tree by volume?", 
@@ -12,13 +11,26 @@ var model = {
 					altText: ["Redwood National Park", "Sequoia National Park", "Everglades National Park", "Joshua Tree National Park"], 
 					answer: "Sequoia National Park", 
 					position: 1,
-				}
+				},
+				{	question: "What national park is home to the longest cave system in the world?", 
+	 			  	choices: ["assets/images/Mammoth-Cave.jpg", "assets/images/Canyonlands.jpg", "assets/images/Carlsbad-Caverns.jpg", "assets/images/Great-Basin.jpg"], 
+					altText: ["Mammoth Cave National Park", "Canyonlands National Park", "Carlsbad Caverns National Park", "Great Basin National Park"], 
+					answer: "Mammoth Cave National Park", 
+					position: 0,
+				},
+				{	question: "What state contains the most national parks?", 
+	 			  	choices: ["assets/images/Colorado.jpg", "assets/images/Utah.jpg", "assets/images/Alaska.jpg", "assets/images/California.jpg"], 
+					altText: ["Colorado", "Utah", "Alaska", "California"], 
+					answer: "Alaska", 
+					position: 2,
+				},
 				],
 				time: 30,
 				intervalId: 0,
 				objIndex: 0,
 				
 				reset: function() {
+					console.log("inside reset");
 	    			model.time = 30;
 	    			intervalId = 0;
 	    			// Change the "display" div to "00 seconds.
@@ -38,7 +50,9 @@ var model = {
     					$("#display").html(result);
 					}else {
 					 	model.stop();
+					 	model.reset();
 					 	$("#question").html('<h3>The correct answer is ' + $(".trivia").data("answer")+'</h3>'+'</br><img src="'+$(".trivia").data("image")+'">');
+						model.next();
 					 }
 				},
 				
@@ -53,7 +67,7 @@ var model = {
 
  				next: function() {
  					console.log("inside next");
- 					if(this.objIndex < model.questions.length){
+ 					if(this.objIndex < model.questions.length -1){
  						console.log(this.objIndex);
 	 					this.objIndex++;
 	 					//return this.questions[this.objIndex];
@@ -71,13 +85,6 @@ var success = false;
 
 function gameView(obj) {
 	model.start();
-	if(model.time===0)  {
-		$("#question").html('<h3>The correct answer is ' + $(".trivia").data("answer")+'</h3>'+'</br><img src="'+$(".trivia").data("image")+'">');
-		//model.stop();
-	 	//model.reset();
-		model.next();
-	}
-
 	var newDiv = $("<div>");
 	newDiv.append("<p>"+obj.question+"</p>");
 	newDiv.addClass("row trivia");
