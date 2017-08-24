@@ -1,9 +1,15 @@
+html,body { 
+	height:100%; 
+}
+
 .jumbotron {
 	background-color: #66aa78;
 }
 
 .container-fluid {
 	background-image: url("../images/old_map/old_map.png");
+	height: 100%;
+	margin-bottom: 40px;
 }
 
 button {
@@ -19,6 +25,13 @@ p {
 	font-size: 20px;
 	margin-left: 10px;
 }
+
+.navbar {
+	background-color: #66aa78;
+	padding: 15px 0 10px 0;
+	color: white;
+}
+
 
 	
 
